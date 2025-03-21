@@ -1,7 +1,11 @@
-from generate_dataset import DatasetGenerator
+from generate_dataset import handle_dataset
 import numpy as np
 
+def main():
+    print("Program start")
+    handle_dataset("./dataset.csv")
 
-generator = DatasetGenerator()
 
-# print(generator.generate_point())
+
+if __name__=="__main__":
+    main()
