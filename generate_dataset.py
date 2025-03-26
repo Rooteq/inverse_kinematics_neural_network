@@ -63,8 +63,6 @@ class DatasetGenerator:
             # write data elements to file
             mydata.writerow([ data_i[0], data_i[1], data_i[2] ])    
 
-
-
 def handle_dataset(path):
     my_file = Path(path)
     if my_file.is_file():
