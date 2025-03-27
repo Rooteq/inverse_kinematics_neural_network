@@ -16,7 +16,6 @@ def solve_ik(x, y):
     
     return q1, q2
 
-# Parameters
 num_points = 200
 angle = np.linspace(0, 2 * np.pi, num_points) 
 radius = 1.2  
@@ -39,7 +38,7 @@ for i in range(len(desired_traj)):
 plt.ion()
 plt.show()
 
-for ind in range(len(robot_positions)-1):  # Adjusted range to match available trajectory points
+for ind in range(len(robot_positions)-1):
     theta_1_i = robot_positions[ind][0]
     theta_2_i = robot_positions[ind][1]
     

@@ -32,18 +32,13 @@ class DatasetGenerator:
                     self.data.append( [ input_position , input_joints , output_joints ] )
 
     def plot_points(self):
-        # print(self.data)
         s = np.array(self.data)
-
-        # print(s)
 
         fig1 = plt.figure()
         plt.xlim([-np.pi,np.pi])
         plt.ylim([-np.pi,np.pi])
         plt.scatter( s[:,1,0], s[:,1,1], color = 'red')
         plt.scatter( s[:,2,0], s[:,2,1], color = 'blue')
-        # plt.show()
-
 
         fig2 = plt.figure()
         plt.xlim([-0.35,0.35])
@@ -52,15 +47,11 @@ class DatasetGenerator:
         plt.show()
     
     def save(self):
-        # open file for writing, "w" is writing
         mydata = csv.writer(open("dataset.csv", "w"))
 
         mydata.writerow([ 'input position', 'input joint', 'output joint' ])
 
-        # loop over data
         for data_i in self.data:
-
-            # write data elements to file
             mydata.writerow([ data_i[0], data_i[1], data_i[2] ])    
 
 def handle_dataset(path):
