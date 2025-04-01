@@ -59,7 +59,7 @@ def handle_dataset(path):
     if my_file.is_file():
         print("Dataset already exists")
     else:
-        generator = DatasetGenerator(20, 20)
+        generator = DatasetGenerator(40, 20)
         generator.generate_points()
         generator.save()
         generator.plot_points()
