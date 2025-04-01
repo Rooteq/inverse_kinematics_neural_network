@@ -174,5 +174,5 @@ cython_debug/
 .pypirc
 
 *.keras
-dataset.*
+./dataset.csv
 *.h5
