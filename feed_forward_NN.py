@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
 import keras
+import matplotlib.pyplot as plt
 
 def main():
     print("Program start")
@@ -35,7 +36,7 @@ def main():
         keras.layers.Dense(2)
     ])
 
-    model.compile(optimizer='adam', loss='mse', metrics=['mae'])
+    model.compile(optimizer='adam', loss='mse', metrics=['mae', 'accuracy'])
 
     # Train the model
     history = model.fit(
@@ -47,10 +48,25 @@ def main():
     )
 
     # Evaluate the model
-    loss, mae = model.evaluate(X_val, y_val, verbose=0)
+    loss, mae, accuracy = model.evaluate(X_val, y_val, verbose=0)
     print(f"Validation Loss: {loss:.4f}")
     print(f"Validation MAE: {mae:.4f}")
+    print(f"Validation Accuracy: {accuracy:.4f}")
+    # Plot training & validation loss and MAE
     
+    # plt.figure(figsize=(12, 4))
+    
+    # Plot Loss
+    plt.plot(history.history['loss'], label='Training Loss')
+    plt.plot(history.history['accuracy'], label='Accuracy')
+    plt.title('Model Loss')
+    plt.xlabel('Epoch')
+    plt.legend(loc='upper right')
+    plt.grid(True)
+
+    plt.tight_layout()
+    plt.savefig('training_metrics.png')
+    plt.show()
     # Save the model
     model.save('robot_kinematics_model.keras')
     print("Model saved successfully")
