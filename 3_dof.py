@@ -69,9 +69,17 @@ def main():
     # Split the data into training and validation sets
     X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=42)
     
-    # Create the neural network model - update input_shape to (5,) for 3DOF
-    # 5 inputs: (x, y) position + (θ1, θ2, θ3) input joints
-    # 3 outputs: (θ1, θ2, θ3) output joints
+    # lr_scheduler = keras.callbacks.ReduceLROnPlateau(
+    #     monitor='val_loss', factor=0.5, patience=15, min_lr=1e-5)
+    early_stopping = keras.callbacks.EarlyStopping(
+        monitor='val_mae',        # Monitor validation MAE instead of loss
+        min_delta=0.0005,         # Minimum change to qualify as improvement (in radians)
+        patience=50,              # Number of epochs with no improvement to wait
+        verbose=1,                # Print messages
+        mode='min',               # We're minimizing the MAE
+        restore_best_weights=True # Restore weights from best epoch
+    )
+
     model = keras.Sequential([
         keras.layers.Dense(128, activation='relu', input_shape=(5,)),
         keras.layers.Dense(128, activation='relu'),
@@ -83,7 +91,7 @@ def main():
     model.compile(
         optimizer='adam', 
         loss='mse',  # Mean squared error for regression
-        metrics=['mae']  # Mean absolute error
+        metrics=['mae'],  # Mean absolute error
     )
     
     # Print model summary
@@ -95,7 +103,8 @@ def main():
         epochs=100,
         batch_size=32,
         validation_data=(X_val, y_val),
-        verbose=1
+        verbose=1,
+        callbacks=[early_stopping]
     )
     
     # Evaluate the model

@@ -18,7 +18,7 @@ def first_quadrant_circle():
     radius = 0.6
     traj = []
     for i in angle:
-        traj.append([1.5 + radius * np.cos(i), 0 + radius * np.sin(i)])
+        traj.append([1.5 + radius * np.cos(i), 0.5 + radius * np.sin(i)])
     return traj
 
 def figure_eight():

@@ -53,7 +53,7 @@ class DatasetGenerator:
         # plt.show()
     
     def save(self):
-        print(self.data)
+        # print(self.data)
         mydata = csv.writer(open("3dof_dataset.csv", "w"))
 
         mydata.writerow([ 'input position', 'input joint', 'output joint' ])
