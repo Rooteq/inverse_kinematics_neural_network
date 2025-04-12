@@ -21,7 +21,7 @@ class DatasetGenerator:
         
         for q1 in self.theta_1:
             for q2 in self.theta_2:
-                for q3 in self.theta_2:
+                for q3 in self.theta_3:
                     x = np.round(self.l1*np.cos(q1) + self.l2*np.cos(q1+q2) + self.l3*np.cos(q1+q2+q3),2)
                     y = np.round(self.l1*np.sin(q1) + self.l2*np.sin(q1+q2) + self.l3*np.sin(q1+q2+q3),2)
 
@@ -35,10 +35,10 @@ class DatasetGenerator:
                         self.data.append( [ input_position , input_joints , output_joints ] )
 
     def plot_points(self):
-        pass
+        # pass
         # print(self.data)
-        # s = np.array(self.data)
-        # print(s)
+        s = np.array(self.data)
+        print(s)
 
         # fig1 = plt.figure()
         # plt.xlim([-np.pi,np.pi])
