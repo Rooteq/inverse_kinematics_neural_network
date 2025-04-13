@@ -80,15 +80,15 @@ class RobotVisualizer:
         q2_offset = 0.34906585
         q3_offset = 0.785398163
 
-        x1 = self.r1 * np.cos(self.q2 + q2_offset)
-        y1 = self.r1 * np.sin(self.q2 + q2_offset) * np.cos(self.q1)
+        x1 = -self.r1 * np.cos(self.q2 + q2_offset)
+        y1 = -self.r1 * np.sin(self.q2 + q2_offset) * np.cos(self.q1)
         z1 = self.r1 * np.sin(self.q2 + q2_offset) * np.sin(self.q1)
         
         # End effector position (end of second link)
-        x2 = x1 + self.r2 * np.cos(self.q2 + q2_offset + np.pi - self.q3 - q3_offset)
-        y2 = y1 + self.r2 * np.sin(self.q2 + q2_offset + np.pi - self.q3 - q3_offset) * np.cos(self.q1)
+        x2 = x1 - self.r2 * np.cos(self.q2 + q2_offset + np.pi - self.q3 - q3_offset)
+        y2 = y1 - self.r2 * np.sin(self.q2 + q2_offset + np.pi - self.q3 - q3_offset) * np.cos(self.q1)
         z2 = z1 + self.r2 * np.sin(self.q2 + q2_offset + np.pi - self.q3 - q3_offset) * np.sin(self.q1)
-        
+
         # Draw coordinate system at origin
         axis_length = 0.3
         self.ax.quiver(0, 0, 0, axis_length, 0, 0, color='r', arrow_length_ratio=0.1)
