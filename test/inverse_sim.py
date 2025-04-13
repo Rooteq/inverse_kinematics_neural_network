@@ -15,9 +15,9 @@ class RobotVisualizer:
         self.q1_offset = 1.57  # 157/100 rad
         
         # Initial position for IK
-        self.target_x = 0.2
-        self.target_y = 0.0
-        self.target_z = 0.1
+        self.target_x = 0.0
+        self.target_y = -0.20
+        self.target_z = 0.0
         
         # Initial joint angles
         self.q1 = 0.0
@@ -78,10 +78,10 @@ class RobotVisualizer:
             OA = self.L1
 
             # Calculate q1 (base joint angle)
-            q1 = np.pi - np.arctan2(AG, OA) - np.arctan2(y, -z)
+            q1 = np.pi - np.arctan2(AG, OA) - np.arctan2(-y, -z)
             
             # Calculate GC (distance in X direction)
-            GC = np.abs(x)
+            GC = x
             
             # Calculate AC (straight-line distance from first joint to end effector)
             AC = np.sqrt(AG**2 + GC**2)
