@@ -47,13 +47,55 @@ class DatasetGenerator:
                         self.data.append([input_position, input_joints, output_joints])
     
     def plot_points(self):
-        # Uncomment and modify plotting code to support 3D visualization
-        pass
-        # s = np.array(self.data)
-        # fig = plt.figure()
-        # ax = fig.add_subplot(111, projection='3d')
-        # ax.scatter(s[:,0,0], s[:,0,1], s[:,0,2], color='blue')
-        # plt.show()
+        # Plot the generated points in 3D
+        if not self.data:
+            print("No data to plot. Generate points first.")
+            return
+            
+        # Extract positions from the data
+        positions = [data_point[0] for data_point in self.data]
+        x_coords = [pos[0] for pos in positions]
+        y_coords = [pos[1] for pos in positions]
+        z_coords = [pos[2] for pos in positions]
+        
+        # Create 3D plot
+        fig = plt.figure(figsize=(10, 8))
+        ax = fig.add_subplot(111, projection='3d')
+        
+        # Plot the points
+        scatter = ax.scatter(x_coords, y_coords, z_coords, 
+                           c=z_coords, cmap='viridis', alpha=0.6, s=20)
+        
+        # Add labels and title
+        ax.set_xlabel('X Position (m)')
+        ax.set_ylabel('Y Position (m)')
+        ax.set_zlabel('Z Position (m)')
+        ax.set_title('3D Workspace of Robot End Effector')
+        
+        # Add colorbar
+        plt.colorbar(scatter, ax=ax, label='Z coordinate (m)')
+        
+        # Set equal aspect ratio for better visualization
+        max_range = max(max(x_coords) - min(x_coords),
+                       max(y_coords) - min(y_coords),
+                       max(z_coords) - min(z_coords)) / 2.0
+        
+        mid_x = (max(x_coords) + min(x_coords)) * 0.5
+        mid_y = (max(y_coords) + min(y_coords)) * 0.5
+        mid_z = (max(z_coords) + min(z_coords)) * 0.5
+        
+        ax.set_xlim(mid_x - max_range, mid_x + max_range)
+        ax.set_ylim(mid_y - max_range, mid_y + max_range)
+        ax.set_zlim(mid_z - max_range, mid_z + max_range)
+        
+        plt.tight_layout()
+        plt.show()
+        
+        # Print some statistics
+        print(f"Plotted {len(self.data)} data points")
+        print(f"X range: {min(x_coords):.3f} to {max(x_coords):.3f}")
+        print(f"Y range: {min(y_coords):.3f} to {max(y_coords):.3f}")
+        print(f"Z range: {min(z_coords):.3f} to {max(z_coords):.3f}")
     
     def save(self):
         mydata = csv.writer(open("real_robot_dataset.csv", "w"))
@@ -72,3 +114,5 @@ def handle_dataset(path):
     generator.plot_points()
     print("Created dataset")
     # file exists
+
+# handle_dataset("./real_robot_dataset.csv")

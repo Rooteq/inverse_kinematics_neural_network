@@ -198,6 +198,18 @@ def skewed_ellipse_3d():
 
     return traj
 
+def point():
+    num_points = 10
+    t = np.linspace(0,1,num_points)
+
+    traj = []
+    for i in t:
+        x = 0.0
+        y = -0.2
+        z = 0.15
+        traj.append([x,y,z])
+
+    return traj
 
 desired_traj = star_2d()
 
@@ -300,14 +312,15 @@ for ind in range(len(robot_positions)):
         s=[80, 60, 60],
     )
 
-    ax.set_xlim([-0.5, 0.5])
-    ax.set_ylim([-0.5, 0.5])
-    ax.set_zlim([-0.5, 0.5])
+    ax.set_xlim([-0.35, 0.35])
+    ax.set_ylim([-0.35, 0.35])
+    ax.set_zlim([-0.35, 0.35])
 
     ax.set_xlabel("X Position")
     ax.set_ylabel("Y Position")
     ax.set_zlabel("Z Position")
-    ax.set_title(f"3DOF Robot Arm - Frame {ind+1}/{len(robot_positions)}")
+    # ax.set_title(f"3DOF Robot Arm - Frame {ind+1}/{len(robot_positions)}")
+    ax.set_title("3-DoF spherical manipulator (simulation)")
 
     if ind == 0:
         ax.legend(loc="upper right")

@@ -6,9 +6,9 @@ from mpl_toolkits.mplot3d import Axes3D
 class RobotVisualizer:
     def __init__(self):
         # Robot dimensions
-        self.L1 = 1.0  # Length of first link
-        self.L2 = 1.0  # Length of second link
-        self.L3 = 1.0  # Length of third link (end effector)
+        self.L1 = 0.06  # Length of first link
+        self.L2 = 0.2  # Length of second link
+        self.L3 = 0.15  # Length of third link (end effector)
         
         # Initial joint angles
         self.q1 = 0.0  # First joint angle
@@ -114,23 +114,23 @@ class RobotVisualizer:
                   color=['black', 'navy', 'red'], s=[60, 60, 100])
         
         # Set plot properties
-        self.ax.set_xlim([-3, 3])
-        self.ax.set_ylim([-3, 3])
-        self.ax.set_zlim([-3, 3])
+        self.ax.set_xlim([-0.4, 0.4])
+        self.ax.set_ylim([-0.4, 0.4])
+        self.ax.set_zlim([-0.4, 0.4])
         self.ax.set_xlabel('X Position')
         self.ax.set_ylabel('Y Position')
         self.ax.set_zlabel('Z Position')
         self.ax.set_title('3DOF Robot Arm with DH Parameters')
         
         # Add joint angle information
-        angle_info = f'Joint 1 (q₁): {self.q1:.2f} rad\nJoint 2 (q₂): {self.q2:.2f} rad\nJoint 3 (q₃): {self.q3:.2f} rad'
-        self.ax.text2D(0.05, 0.95, angle_info, transform=self.ax.transAxes,
-                 bbox=dict(boxstyle="round,pad=0.3", fc='white', alpha=0.7))
+        # angle_info = f'Joint 1 (q₁): {self.q1:.2f} rad\nJoint 2 (q₂): {self.q2:.2f} rad\nJoint 3 (q₃): {self.q3:.2f} rad'
+        # self.ax.text2D(0.05, 0.95, angle_info, transform=self.ax.transAxes,
+        #          bbox=dict(boxstyle="round,pad=0.3", fc='white', alpha=0.7))
         
         # Calculate and display end effector position
-        ee_info = f'End Effector Position:\nX: {x3:.2f}\nY: {y3:.2f}\nZ: {z3:.2f}'
-        self.ax.text2D(0.75, 0.95, ee_info, transform=self.ax.transAxes,
-                 bbox=dict(boxstyle="round,pad=0.3", fc='white', alpha=0.7))
+        # ee_info = f'End Effector Position:\nX: {x3:.2f}\nY: {y3:.2f}\nZ: {z3:.2f}'
+        # self.ax.text2D(0.75, 0.95, ee_info, transform=self.ax.transAxes,
+        #          bbox=dict(boxstyle="round,pad=0.3", fc='white', alpha=0.7))
         
         # View from a good angle to see the robot
         # self.ax.view_init(elev=30, azim=45)
