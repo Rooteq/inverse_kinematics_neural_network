@@ -45,14 +45,14 @@ def main():
         ]
     )
 
-    model.compile(optimizer="adam", loss="mse", metrics=["mae"])
+    model.compile(optimizer="adam", loss="log_cosh", metrics=["mae"])
 
     # Train the model
     history = model.fit(
         X_train,
         y_train,
-        epochs=200,
-        batch_size=32,
+        epochs=170,
+        batch_size=450,
         validation_data=(X_val, y_val),
         verbose=1,
         callbacks=[early_stopping],

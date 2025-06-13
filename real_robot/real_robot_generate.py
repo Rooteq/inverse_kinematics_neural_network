@@ -105,14 +105,14 @@ class DatasetGenerator:
 
 def handle_dataset(path):
     my_file = Path(path)
-    # if my_file.is_file():
-    #     print("Dataset already exists")
-    # else:
-    generator = DatasetGenerator(30, 5)
-    generator.generate_points()
-    generator.save()
-    generator.plot_points()
-    print("Created dataset")
+    if my_file.is_file():
+        print("Dataset already exists")
+    else:
+        generator = DatasetGenerator(30, 5)
+        generator.generate_points()
+        generator.save()
+        generator.plot_points()
+        print("Created dataset")
     # file exists
 
 # handle_dataset("./real_robot_dataset.csv")
