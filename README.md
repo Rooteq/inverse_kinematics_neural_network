@@ -9,7 +9,9 @@ This project trains feedforward neural networks to learn the inverse kinematic m
 Running the test files includes real-time visualization:
 ![3_dof_visualization](images/3_dof_viz.png)
 
-This has been demonstrated to work on real manipulator I've been working on
+This has been demonstrated to work on real manipulator I've been working on:
+
+![my_sim](images/moving_arm.gif)
 
 ## Dataset Generation
 
